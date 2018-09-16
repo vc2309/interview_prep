@@ -27,28 +27,45 @@ class Graph(object):
 
 	def BFS(self,s,g):
 		queue=[]
-		visited=[]
+		visited={v:False for v in self.graph.keys()}
+		dist={v:None for v in self.graph.keys()}
+		# post={v:None for v in self.graph.keys()}
+		pre={v:None for v in self.graph.keys()}
+		pre[s]="START"
 		queue.append(s)
-		while(len(queue)>0):
+		dist[s]=0
+		found=False
+		while len(queue):
 			cur=queue.pop(0)
-			visited.append(cur)
+			visited[cur]=True
 			if cur==g:
 				print("found")
+				found=True
 				break
 			for child in self.graph[cur]:
-				if child not in visited and child not in queue:
+				if not visited[child]:
 					queue.append(child)
+					if not dist.get(child):
+						dist[child]=dist[cur]+1
+						pre[child]=cur
+
 		if cur!=g:
 			print("No path")
 		else:
 			print(visited)
+			print(dist)
+			cur=g
+			# print(pre)
+			while cur!="START":
+				print(cur,"<-")
+				cur=pre[cur]
 
 
 			
 
 def main():
 	g=Graph(name="Friends")
-	names=["Vishnu","Yash","Abeer","Vyoma","Namita","Shubhashish","Ameeq","Jaiman","Zubin","Siddhu","Bhavya","Manasi","Saisha","Malvika","Devki"]
+	names=["Vishnu","Yash","Abeer","Vyoma","Namita","Shubhashish","Ameeq","Jaiman","Zubin","Siddhu","Bhavya","Manasi","Saisha","Malvika","Devki","Prannay","Maru","Ridhima"]
 	for x in names:
 		g.addNode(x)
 
