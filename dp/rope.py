@@ -5,7 +5,7 @@ def rope_cut(ln,memo):
 
 	if not memo.get(ln):
 		memo[ln]=max([max(rope_cut(ln-li,memo),ln-li)*li for li in range(1,ln)])
-	print(ln,memo[ln])
+	# print(ln,memo[ln])
 	return memo[ln]
 
 def main():

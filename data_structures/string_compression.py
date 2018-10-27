@@ -18,7 +18,7 @@ def compress(a):
 	return compressed
 
 def main():
-	word = input("Enter string \n")
+	word = raw_input("Enter string \n")
 	print(compress(word))
 
 if __name__ == '__main__':

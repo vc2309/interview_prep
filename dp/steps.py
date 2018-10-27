@@ -1,16 +1,14 @@
 def steps(steps_left, steps_counts,hashmap):
 	if steps_left==0:
 		return 1
-	elif steps_left>0:
-		if hashmap.get(steps_left):
-			return hashmap[steps_left]
-		sum_steps=0
-		for num_steps in steps_counts:
-			sum_steps+=steps(steps_left-num_steps,steps_counts,hashmap)
-		hashmap[steps_left]=sum_steps
-		return sum_steps
-	else:
+	elif steps_left<0:
 		return 0
+	if not hashmap.get(steps_left):
+		hashmap[steps_left]=0
+		for i in steps_counts:
+			if i<=steps_left:
+				hashmap[steps_left]+=steps(steps_left-i,steps_counts,hashmap)
+	return hashmap[steps_left]
 
 def main():
 	steps_counts=[1,2,3]
