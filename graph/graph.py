@@ -60,6 +60,29 @@ class Graph(object):
 				print(cur,"<-")
 				cur=pre[cur]
 
+	def allPathsHelper(self,s,d,visited,path):
+		print(s,d)
+		visited[s]=True
+		if s==d:
+			visited[s]=False
+			paths.append([d])
+			return True
+		found_path=False
+		for i in self.graph[s]:
+			if not visited.get(i):
+				print("from",s,i)
+				if self.allPathsHelper(i,d,visited,paths):
+					paths[-1].append(s)
+					found_path=True
+		return found_path
+
+		
+	def allPaths(self,s,d):
+		paths = []
+		visited = {v:False for v in self.graph.keys()}
+		self.allPathsHelper(s,d,visited,paths)
+		print(paths)
+
 
 			
 
@@ -78,7 +101,7 @@ def main():
 	g.print()
 	s=input("Find path between?")
 	f=input("and")
-	g.BFS(s,f)
+	g.allPaths(s,f)
 
 if __name__ == '__main__':
 	main()
