@@ -1,16 +1,17 @@
 # Decorators
 
 - We use decorator functions to take a function as an argument and return a function.
-
+	
+	```python
 		def twice(fn):
 			def do_twice():
 				fn()
 				fn()
 			return do_twice
-
 		@twice
 		def site(s):
 			print("ok",s)
+	```
 
 - in python, functions are *first class objects* which means that they can be referenced which means they can be *passed to a variable* and *returned by other functions*.
 
