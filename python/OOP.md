@@ -5,7 +5,8 @@
 	3. Static variable
 	4. Overloading the printing operator fxn
 	5. Calling the super function
-
+	
+	```
 		class Base(object):
 		    #This is how we declare a static variable
 		    count=0
@@ -30,6 +31,7 @@
 		        print(super().get_val())
 		        return ""
 
+	```
 ## Class method vs Static method
 - Class methods use the @classmethod decorator and take *cls* which is the class, as a parameter. They can access the class state.
 - Static methods don't take the params, and have no access to class state or instance state. They are usually utility functions.
