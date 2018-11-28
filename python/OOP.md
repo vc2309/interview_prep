@@ -6,7 +6,7 @@
 	4. Overloading the printing operator fxn
 	5. Calling the super function
 	
-	```
+	```python
 		class Base(object):
 		    #This is how we declare a static variable
 		    count=0
