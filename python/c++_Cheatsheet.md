@@ -61,3 +61,27 @@
 	int i, arr[10];
 	int *parr = arr; // think parr[], pointer to array of N ints
 	```
+
+### 3.4 Structs
+
+- Collection of heterogenous values
+- Can also have functions
+- <all members are public by default>
+
+`struct Complex {double re, im} c;` One line declaration
+
+- Dereferencing
+
+	```c++
+	(*sp1).name is the same as sp1->name
+	```
+
+### 3.5 Memory Management
+- unmanaged language -> the programmer must take care of this
+
+#### new keyword
+- used to allocate HEAP memory for an object
+- 3 steps:
+	1. determine size
+	2. allocate heap storage of correct size
+	3. coerce undegined storage to correct type
