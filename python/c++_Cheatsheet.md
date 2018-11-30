@@ -238,7 +238,7 @@ struct Car : public Engine { // implicit // composition
 int s(...) { cyls = 4; r(...); ... }
 Car() { ... } } vw;
 vw.cyls = 3; // direct reference vw.r(...); // direct reference vw.s(...); // direct reference
-```
+	```
 
 - 
 
