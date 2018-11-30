@@ -85,3 +85,125 @@
 	1. determine size
 	2. allocate heap storage of correct size
 	3. coerce undegined storage to correct type
+
+#### delete keyword
+- used to free space from heap
+- delete must be used with a reference or a pointer
+
+	```c++
+	Foo *p = new Foo;
+	...
+	delete p;
+	```
+- deleting array
+`int *parr = new int[10]; delete [] parr;`
+
+
+### 3.6 Namespaces
+- C++ namespaces are used to organize libraries and programs of multiple types and declarations to deal with name conflicts
+- namespace std contains IO declarations
+- 
+
+	```c++
+	namespace Foo { int i = 0; } namespace Bar { int i = 1; } 
+	{
+		int i = 2;
+		using namespace Foo; // i exists in scope, alias ignored }
+	{
+	using namespace Foo;
+	using namespace Bar; // i exists from using directive i = 0; // conflict failure, ambiguous reference to ’i’
+	}
+	```
+
+
+#### Dynamic allocation should be used only when a variable’s storage must outlive the block in which it is allocated (see also page 103).
+
+### 3.7 Routines and Memory
+
+- each routine or function calls a new block or frame on the stack
+- any allocated memory is in the heap
+- static variables and global variables are stored in static memory
+- parameters of functions are stored in their stack frame
+- unintialized local variables are stored in the stack
+
+#### 3.7.1 Passing by reference or value
+- In c++ we can do either
+- If its a value param, the copy is stored in the routines block on the stack(may have implicit conversion)
+- reference params have their address pushed on the stack and this is referenced to get the value
+- Good practise uses reference parameters rather than pointer.
+- *Arrays are always passed by reference* `double sum( double *m[] );`
+
+#### 3.7.2 Overloading
+- Giving multiple functions the same name to allow varied functionality based on argument type/number
+
+### 3.8 Object Oriented Programming
+- Based on structures to organize logically related data
+- An object provides both data and the operations necessary to manipulate that data in one self-contained package.
+
+##### Interface:
+- Interface separates usage from implementation at the interface boundary,
+- Developing good interfaces for objects is important.
+
+#### Object members
+- Structures/classes have their own scope for each instance
+- Structure scope is implemented via a T * const this parameter, implicitly passed to each routine member (like left example).
+
+	```c++
+double abs() const {
+return sqrt( this->re * this->re + this->im * this->im ); }
+```
+
+- Since implicit parameter “this” is a const pointer, it should be a reference.
+
+#### Operator members
+- These are functions called using symbols on the instance variables.
+
+	```c++
+Complex operator+( Complex c ) { // rename add member return { re + c.re, im + c.im };
+}
+```
+
+#### Constructor
+- Implicitly performs initialization after object allocation to ensure the object is valid for use
+- For dynamic allocation,constructor arguments after type:
+
+
+	```c++
+Complex *x = new Complex; // x->Complex();
+Complex *y = new Complex( 3.2, 4.5 ); // y->Complex( 3.2, 4.5 ); Complex *z = new Complex{ 3.2 }; // z->Complex( 3.2 );
+```
+
+#### Literals
+- Constructors are used to create object literals as well
+
+	```c++
+Complex x,y,z;
+x = {3.2};
+y = x + (Complex){3.2,4.5};
+}
+	```
+
+#### Conversion
+
+	```c++
+	int i;
+	double d; Complex x, y;
+	x = 3.2;
+	y = x + 1.3; y = x + i;
+	y = x + d;
+	implicitly rewritten as
+	x = Complex( 3.2 );
+	y = x.operator+( Complex(1.3) );
+	y = x.operator+( Complex( (double)i ); y = x.operator+( Complex( d ) );
+	```
+- We can turn off these implicit conversions by using `explicit` in unction definition.
+
+#### Destructor
+- Destructor is ONLY REQUIRED when an object has members which are non contingously stored and dynamically allocated.
+- Contiguous objects are not needed to have a destructor
+- Destructor is called before deallocation either implicitly or explicitly by using `delete`
+- Destructors must be called in reverse order to constructors because of dependencies.
+
+#### Destructor is implicitly noexcept
+- Destructors can raise exceptions if the inherit from a class having noexcept(false)
+- If we raise exception in destructor, then on propagation aka handling another error, if the destructor is called, we cannot handle the exception thrown by the destructor, because the previous exception is still being handled. Program terminates.
