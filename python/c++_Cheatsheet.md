@@ -231,7 +231,7 @@ y = x + (Complex){3.2,4.5};
 #### Implementation Inheritance (Has - a)
 - Composition is Implicit (car has-a engine)
 	```c++
-	struct Engine { // Base int cyls;
+struct Engine { // Base int cyls;
 int r(...) { ... }
 Engine() { ... } };
 struct Car : public Engine { // implicit // composition
