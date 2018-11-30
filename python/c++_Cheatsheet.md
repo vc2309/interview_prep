@@ -166,12 +166,10 @@ Complex operator+( Complex c ) { // rename add member return { re + c.re, im + c
 #### Constructor
 - Implicitly performs initialization after object allocation to ensure the object is valid for use
 - For dynamic allocation,constructor arguments after type:
-
-
 	```c++
 Complex *x = new Complex; // x->Complex();
 Complex *y = new Complex( 3.2, 4.5 ); // y->Complex( 3.2, 4.5 ); Complex *z = new Complex{ 3.2 }; // z->Complex( 3.2 );
-```
+	```
 
 #### Literals
 - Constructors are used to create object literals as well
@@ -207,3 +205,42 @@ y = x + (Complex){3.2,4.5};
 #### Destructor is implicitly noexcept
 - Destructors can raise exceptions if the inherit from a class having noexcept(false)
 - If we raise exception in destructor, then on propagation aka handling another error, if the destructor is called, we cannot handle the exception thrown by the destructor, because the previous exception is still being handled. Program terminates.
+
+#### Copy Constructor / Assignment Operator
+
+-  Constructor with a const reference parameter of class type is used for initialization (decla- rations/parameters/return), called copy constructor:
+`Complex( const Complex &c ) { ... }`
+
+- Assignment operator `Complex &operator=( const Complex &rhs ) { ... }`
+- If a copy constructor or assignment operator isnt defined,an implicitone is generated that does a memberwise copy of each subobject.
+
+#### Initialize const / Object Member
+• C/C++constmembersandlocalobjectsofastructuremustbeinitializedatdeclaration:
+
+### 3.8.1 Encapsulation
+- Putting all implementation within object and hides it to support abstraction.
+
+#### Scopes
+- public/private/protected visibility
+- friendship : Mechanism to allow outside routines (non member) to access private variables.
+
+### 3.8.2 Inheritance
+- Re-using logic for related classes
+- Implementation inheritance provides reuse of code inside an object type.
+- Type inheritance provides reuse outside the object type by allowing existing code to access the base type.
+
+#### Implementation Inheritance (Has - a)
+- Composition is Implicit (car has-a engine)
+
+	```c++
+	struct Engine { // Base int cyls;
+int r(...) { ... }
+Engine() { ... } };
+struct Car : public Engine { // implicit // composition
+int s(...) { cyls = 4; r(...); ... }
+Car() { ... } } vw;
+vw.cyls = 3; // direct reference vw.r(...); // direct reference vw.s(...); // direct reference
+	```
+
+- 
+
