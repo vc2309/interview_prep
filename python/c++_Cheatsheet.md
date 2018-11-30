@@ -182,7 +182,6 @@ y = x + (Complex){3.2,4.5};
 	```
 
 #### Conversion
-
 	```c++
 	int i;
 	double d; Complex x, y;
