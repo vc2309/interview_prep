@@ -335,8 +335,8 @@ y = x + (Complex){3.2,4.5};
 - **Virtual members are only necessary to access derived members through base type reference or pointer**
 - **Any type with virtual members needs to make the destructor virtual (even if empty) so the most derived destructor is called through a base-type pointer/reference.**
 
-##### Polymorphic Assignment
--	
+##### Polymorphic Assignment	
+- How to manipulate polymorphic references
 	```c++
 	struct Base {
 		void f() {} // non-virtual 
