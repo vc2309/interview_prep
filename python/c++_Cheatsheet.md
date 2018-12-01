@@ -336,7 +336,7 @@ y = x + (Complex){3.2,4.5};
 - **Any type with virtual members needs to make the destructor virtual (even if empty) so the most derived destructor is called through a base-type pointer/reference.**
 
 ##### Polymorphic Assignment
-	
+-	
 	```c++
 	struct Base {
 		void f() {} // non-virtual 
@@ -364,3 +364,9 @@ y = x + (Complex){3.2,4.5};
 	dp = dynamic_cast<Derived *>(bp);
 	if dp(!=0){//it is derived}
 	```
+
+- The type must have at least one virtual member
+
+### Slicing
+- polymorphic copy/assignment can result in object truncation clled slicing.
+-
