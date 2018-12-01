@@ -279,6 +279,7 @@
 		int calls() { return cntCalls;} 
 	}
 	```
+
 #### Contravariance
 - One problem with type inheritance and name equivalance is this:
 - for overloading operator +, we have `Complex &operator(Complex,Complex)` , which cant take in subtypes of Complex, but will return a Complex only.
