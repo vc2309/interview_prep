@@ -272,7 +272,7 @@ y = x + (Complex){3.2,4.5};
 	class MyComp : public Complex {
 		int cntCalls;
 		MyComp(double re,double im=0.0) : Complex(re,im) , cntCalls(0) {}
-	
+
 		double abs(){ 	//override
 			cntCalls+=1;
 			return Complex::abs(); //Using the implementation of Complex 
@@ -296,6 +296,8 @@ y = x + (Complex){3.2,4.5};
 	```
 
 ### Copy Constructor/Assignment
+- How to implement copy constructor/assignment with inheritance
+
 	```c++
 	class B{
 		int i;
@@ -319,6 +321,7 @@ y = x + (Complex){3.2,4.5};
 		}
 	};
 	```
+	
 ### Overloading
 - Overloaded routines in subclasses override the base class routines.
 - We can still access base class members like this `Base::routine()`
@@ -327,3 +330,35 @@ y = x + (Complex){3.2,4.5};
 - When you call a routine from a pointer/reference to a derived object, it will call the base routine if it is interpreted as a Base class pointer.
 - To invoke a routine defined in a referenced object, qualify the member routine with `virtual`. To invoke the routine which is defined by the **type** of a pointer/reference, don't use virtual
 - So if you have an object which is of type `Derived1`, and another of `Derived2`, and they are both referenced by a `Base` pointer, used `virtual` to access a special implementation of any routine, but to use the `Base` implementation, dont use `virtual`.
+- Java always uses virtual for all calls to objects
+- Once a base type qualifies a routine member as virtual, it is virtual for all derived types.
+- **Virtual members are only necessary to access derived members through base type reference or pointer**
+- **Any type with virtual members needs to make the destructor virtual (even if empty) so the most derived destructor is called through a base-type pointer/reference.**
+
+##### Polymorphic Assignment
+	```c++
+	struct Base {
+		void f() {} // non-virtual 
+		void g() {} // non-virtual 
+		virtual void h() {} // virtual
+		};
+	struct Derived : public Base {
+		void g() {};
+		void h() {}; 
+		void e() {};
+	};
+		Base &b = new Derived();
+		b.f() // calls Base::f()
+		(Derived  &)b.g() // calls explicitly Derived::g()
+		b.Base::h() // explicit call to Base::h()
+		b.h() // Derived::h()
+	```
+### Dynamic cast
+- determines the base type of a derived reference
+
+	```c++
+	Base *bp = new Derived;
+	Derived *dp;
+	dp = dynamic_cast<Derived *>(bp);
+	if dp(!=0){//it is derived}
+	```
