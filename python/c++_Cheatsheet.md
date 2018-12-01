@@ -321,7 +321,7 @@ y = x + (Complex){3.2,4.5};
 		}
 	};
 	```
-	
+
 ### Overloading
 - Overloaded routines in subclasses override the base class routines.
 - We can still access base class members like this `Base::routine()`
@@ -336,6 +336,7 @@ y = x + (Complex){3.2,4.5};
 - **Any type with virtual members needs to make the destructor virtual (even if empty) so the most derived destructor is called through a base-type pointer/reference.**
 
 ##### Polymorphic Assignment
+	
 	```c++
 	struct Base {
 		void f() {} // non-virtual 
@@ -353,6 +354,7 @@ y = x + (Complex){3.2,4.5};
 		b.Base::h() // explicit call to Base::h()
 		b.h() // Derived::h()
 	```
+
 ### Dynamic cast
 - determines the base type of a derived reference
 
