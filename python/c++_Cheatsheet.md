@@ -149,9 +149,9 @@
 - Structure scope is implemented via a T * const this parameter, implicitly passed to each routine member (like left example).
 
 	```c++
-double abs() const {
-return sqrt( this->re * this->re + this->im * this->im ); }
-```
+	double abs() const {
+	return sqrt( this->re * this->re + this->im * this->im ); }
+	```
 
 - Since implicit parameter “this” is a const pointer, it should be a reference.
 
@@ -159,29 +159,30 @@ return sqrt( this->re * this->re + this->im * this->im ); }
 - These are functions called using symbols on the instance variables.
 
 	```c++
-Complex operator+( Complex c ) { // rename add member return { re + c.re, im + c.im };
-}
-```
+	Complex operator+( Complex c ) { // rename add member return { re + c.re, im + c.im };
+	}
+	```
 
 #### Constructor
 - Implicitly performs initialization after object allocation to ensure the object is valid for use
 - For dynamic allocation,constructor arguments after type:
 	```c++
-Complex *x = new Complex; // x->Complex();
-Complex *y = new Complex( 3.2, 4.5 ); // y->Complex( 3.2, 4.5 ); Complex *z = new Complex{ 3.2 }; // z->Complex( 3.2 );
+	Complex *x = new Complex; // x->Complex();
+	Complex *y = new Complex( 3.2, 4.5 ); // y->Complex( 3.2, 4.5 ); Complex *z = new Complex{ 3.2 }; // z->Complex( 3.2 );
 	```
 
 #### Literals
 - Constructors are used to create object literals as well
 
 	```c++
-Complex x,y,z;
-x = {3.2};
-y = x + (Complex){3.2,4.5};
-}
+	Complex x,y,z;
+	x = {3.2};
+	y = x + (Complex){3.2,4.5};
+	}
 	```
 
 #### Conversion
+- See how conversion is done by using implicit conversion by members of class
 	```c++
 	int i;
 	double d; Complex x, y;
@@ -266,13 +267,13 @@ y = x + (Complex){3.2,4.5};
 - **Type inheritance relaxes name equivalence by aliasing the derived name with its base type names**
 
 ##### Example of using Type and Implementation inheritance
-	
+- Simplify our implementation
+
 	```c++
 	class Complex{//..}
 	class MyComp : public Complex {
 		int cntCalls;
 		MyComp(double re,double im=0.0) : Complex(re,im) , cntCalls(0) {}
-
 		double abs(){ 	//override
 			cntCalls+=1;
 			return Complex::abs(); //Using the implementation of Complex 
