@@ -369,4 +369,24 @@ y = x + (Complex){3.2,4.5};
 
 ### Slicing
 - polymorphic copy/assignment can result in object truncation clled slicing.
--
+
+### Protected members
+- Protected members are accessible by inherited classes of base classes.
+
+### Abstract Classes
+- Combines Implementation and Type in heritance for ***structuring new classes***
+- Contains **at least 1 pure virtual member** which is implemented by derived classes
+
+	```c++
+	class Shape{
+		enum Colour{Red, Black, White} c;
+		public:
+			virtual void move(int x,int y) = 0; //this is how to declare pure virtual
+	}
+	```
+
+- Provide (pure) virtual member to allow overriding and **force implementation by derived
+class.**
+- Non-virtual routines are provided to *force base implementation*, rest must be implemented by the concrete classes.
+- **Concrete class** inherits from one or more abstract classes and defines all pure virtual functions.
+- You ***cannot instantiate* an abstract class but can *declare reference or pointer* of it** 
