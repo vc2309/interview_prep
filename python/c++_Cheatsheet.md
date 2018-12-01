@@ -101,8 +101,7 @@
 
 ### 3.6 Namespaces
 - C++ namespaces are used to organize libraries and programs of multiple types and declarations to deal with name conflicts
-- namespace std contains IO declarations
-- 
+- namespace std contains IO declarations 
 
 	```c++
 	namespace Foo { int i = 0; } namespace Bar { int i = 1; } 
@@ -114,7 +113,6 @@
 	using namespace Bar; // i exists from using directive i = 0; // conflict failure, ambiguous reference to ’i’
 	}
 	```
-
 
 #### Dynamic allocation should be used only when a variable’s storage must outlive the block in which it is allocated (see also page 103).
 
