@@ -266,10 +266,9 @@ y = x + (Complex){3.2,4.5};
 - **Type inheritance relaxes name equivalence by aliasing the derived name with its base type names**
 
 ##### Example of using Type and Implementation inheritance
-
+	
 	```c++
 	class Complex{//..}
-
 	class MyComp : public Complex {
 		int cntCalls;
 		MyComp(double re,double im=0.0) : Complex(re,im) , cntCalls(0) {}
@@ -297,7 +296,6 @@ y = x + (Complex){3.2,4.5};
 	```
 
 ### Copy Constructor/Assignment
-
 	```c++
 	class B{
 		int i;
@@ -308,9 +306,7 @@ y = x + (Complex){3.2,4.5};
 			i = other.i;
 			return *this;
 		}
-
 	};
-
 	class D: public B{
 		int j;
 		public:
@@ -322,7 +318,6 @@ y = x + (Complex){3.2,4.5};
 			return *this;
 		}
 	};
-
 	```
 ### Overloading
 - Overloaded routines in subclasses override the base class routines.
