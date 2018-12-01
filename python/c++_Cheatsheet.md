@@ -390,3 +390,20 @@ class.**
 - Non-virtual routines are provided to *force base implementation*, rest must be implemented by the concrete classes.
 - **Concrete class** inherits from one or more abstract classes and defines all pure virtual functions.
 - You ***cannot instantiate* an abstract class but can *declare reference or pointer* of it** 
+
+### 4 STL
+- Collection of template classes and routines
+- Containers : vector, map, list, stack ..
+- Nodes of a ds are either in a container contiguously or pointed to from the container.
+- All containers are stored in heap and created dynamically
+
+#### 4.1 Vector
+- Random access of elements of elements.
+- length
+- subscript checking
+- assignment
+
+#### 4.2 Map
+- Random access
+- Sorted
+- Unique key container of key val pairs
