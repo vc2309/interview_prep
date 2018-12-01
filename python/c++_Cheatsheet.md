@@ -214,14 +214,21 @@ y = x + (Complex){3.2,4.5};
 - If a copy constructor or assignment operator isnt defined,an implicitone is generated that does a memberwise copy of each subobject.
 
 #### Initialize const / Object Member
-• C/C++constmembersandlocalobjectsofastructuremustbeinitializedatdeclaration:
+- C/C++ const members and local objects of a structure must be initialized at declaration:
 
 ### 3.8.1 Encapsulation
 - Putting all implementation within object and hides it to support abstraction.
 
+
+
 #### Scopes
 - public/private/protected visibility
 - friendship : Mechanism to allow outside routines (non member) to access private variables.
+
+#### Pipml pattern : Used to completely hide the implementation of a class
+- Create a class `Complex`, within which you create a struct called `ComplexImpl`, within which you do the actual implementation.
+- Create a reference to a `ComplexImpl` object called `ComplexImpl &impl` which is a member of the Complex class.
+- Now you can use the functions and memebers of `impl` to carry out all the operations in `Complex`.
 
 ### 3.8.2 Inheritance
 - Re-using logic for related classes
@@ -241,5 +248,87 @@ y = x + (Complex){3.2,4.5};
 	vw.cyls = 3; // direct reference vw.r(...); // direct reference vw.s(...); // direct reference
 	```
 
-- 
+- Instead of making `Engine` owned by `Car`, we can extend `Engine` with more features to make it a `Car` and make `Car` inherit from `Engine`.
 
+#### Type Inheritance (is - a)
+
+- Making a base type from which more detailed sub types can be extended.
+
+	```c++
+	class Employee{
+		//...
+	}
+	class PartTime:public Employee{
+		//...
+	}
+	```
+- We have name equivalence here so we can allow routines to handle multiple types called polymorphism.
+- **Type inheritance relaxes name equivalence by aliasing the derived name with its base type names**
+
+##### Example of using Type and Implementation inheritance
+
+	```c++
+	class Complex{//..}
+
+	class MyComp : public Complex {
+		int cntCalls;
+		MyComp(double re,double im=0.0) : Complex(re,im) , cntCalls(0) {}
+	
+		double abs(){ 	//override
+			cntCalls+=1;
+			return Complex::abs(); //Using the implementation of Complex 
+		}
+		int calls() { return cntCalls;} 
+	}
+	```
+#### Contravariance
+- One problem with type inheritance and name equivalance is this:
+- for overloading operator +, we have `Complex &operator(Complex,Complex)` , which cant take in subtypes of Complex, but will return a Complex only.
+- Hence if we assign the result of this operation to a MyComp, it will not have the cntCalls member.
+
+### Constructor/ Destructors
+- Constructors are executed top down, destructors in opposite order
+
+	```c++
+	class Derived: public Base{
+		Derived(int x): Base(x), cnt(0) {}
+		~Derived(){} // ~Base is implicitly called
+	};
+	```
+
+### Copy Constructor/Assignment
+
+	```c++
+	class B{
+		int i;
+		public:
+		B(int i) : i{i} {}
+		B(const B& other) : i{other.i} {}
+		B &operator=(const B& other) {
+			i = other.i;
+			return *this;
+		}
+
+	};
+
+	class D: public B{
+		int j;
+		public:
+		D(int j): j{j} {}
+		D(const &D other) : B(other), j{other.j} {}
+		D &operator=(const &D other) {
+			(B &)*this = other; //coercion
+			j = other.j;
+			return *this;
+		}
+	};
+
+	```
+### Overloading
+- Overloaded routines in subclasses override the base class routines.
+- We can still access base class members like this `Base::routine()`
+
+### Virtual Routines
+- When you call a routine from a pointer/reference to a derived object, it will call the base routine if it is interpreted as a Base class pointer.
+- To invoke a routine defined in a referenced object, qualify the member routine with `virtual`. To invoke the routine which is defined by the **type** of a pointer/reference, don't use virtual
+- So if you have an object which is of type `Derived1`, and another of `Derived2`, and they are both referenced by a `Base` pointer, used `virtual` to access a special implementation of any routine, but to use the `Base` implementation, dont use `virtual`.
