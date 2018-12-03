@@ -31,6 +31,7 @@
 	```
 
 #### Printing all paths
+- We have to make a decision at each node to use that node in the path, and then remove it from the path and also "unvisit" it so that we may use it again in another possible path
 	```python
 	def helper(G,s,d,visited,path):
 		path.append(s)
