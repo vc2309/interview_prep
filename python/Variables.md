@@ -27,18 +27,18 @@
           "yes"
 
 - We can also assign global variables within functions
-		```python
-		def fn():
-			global s
-			print(s)
-			s="yes"
-			global ss
-			ss="noooo"
-			print(s)
-		s="no"
-		fn()
-		print(ss)
-		```
+	```python
+	def fn():
+		global s
+		print(s)
+		s="yes"
+		global ss
+		ss="noooo"
+		print(s)
+	s="no"
+	fn()
+	print(ss)
+	```
 no
 yes
 noooo
