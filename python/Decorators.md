@@ -21,6 +21,7 @@
 
 - What essentially happens here is:
 	1. When we call site("ok"), we are actually doing this:
-
+	```python
 		site = twice(site("ok"))
 		site()
+	```
