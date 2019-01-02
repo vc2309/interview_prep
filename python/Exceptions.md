@@ -2,7 +2,7 @@
 
 ## Try and Except
 
-	```python
+```python
 	try:  
 	    print "Second element = %d" %(a[1]) 
 	  
@@ -11,7 +11,7 @@
 	  
 	except IndexError: 
 	    print "An error occurred"
-	```
+```
 
 ## Try, except and else
 - The else clause is entered if try does not raise an exception
