@@ -27,18 +27,18 @@
           "yes"
 
 - We can also assign global variables within functions
-		```python
-		def fn():
-			global s
-			print(s)
-			s="yes"
-			global ss
-			ss="noooo"
-			print(s)
-		s="no"
-		fn()
-		print(ss)
-		```
+	```python
+	def fn():
+		global s
+		print(s)
+		s="yes"
+		global ss
+		ss="noooo"
+		print(s)
+	s="no"
+	fn()
+	print(ss)
+	```
 no
 yes
 noooo
@@ -57,13 +57,13 @@ Ways to unpack list and tuple:
 	fn(\*arr)
 
 If we want to accept a packed number of variables into a function
-	```python
+```python
 	def fxn(*args):
-        args = list(args)
-        args = [i*2 for i in args]
-        print(args)
-    fxn(a,b,c,d)
-	```
+        	args = list(args)
+        	args = [i*2 for i in args]
+        	print(args)
+    	fxn(a,b,c,d)
+```
 [2, 4, 6, 8]
 
 2. \*\*kwargs for dicts

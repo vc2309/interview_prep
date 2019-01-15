@@ -7,7 +7,6 @@
 	5. Calling the super function
 	
 	```python
-<<<<<<< HEAD
 	class Base(object):
 	    #This is how we declare a static variable
 	    count=0

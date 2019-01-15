@@ -1,6 +1,7 @@
 # Generators
 - Generators are functions which use the yield keyword as an exit point also used to return values. Each time a generator is called, it enters after the last yield expression.
-	```python
+	
+```python
 	def xrange_(lower=None,upper=None,step=1):
 		if lower==None and upper==None:
 			raise KeyError
@@ -9,14 +10,18 @@
 		while lower<upper:
 			yield lower
 			lower+=step
-	```
+```
+
 ## Using the generator as a function
-	```python	
+	
+```python	
 	for i in xrange_(10):
 		print(i)
-	```
+```
+
 ## Using the generator as an object
-	```python
+
+```python
 	#we can get an iterator object from the generator function
 	iterator = xrange_.__iter__()
 	while True:
@@ -24,7 +29,8 @@
 			print(next(iterator))
 		except:
 			break
-	```
+```
+
 Difference between Generator function and Normal function –
 
 Once the function yields, the function is paused and the control is transferred to the caller.
